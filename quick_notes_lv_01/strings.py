@@ -72,6 +72,11 @@ print(split_04)
 split_04 = split_string2.split('o')
 print(split_04)
 
+# Extract Splitted Strings
+tweet = "Go Sports! #Sports"
+tweet_result = tweet.split('#')[1]
+print(tweet_result)
+
 # Print Formatting
 
 print_formatting_01 = "Insert another string here: {}".format("INSERT ME!") # Insert one string in another
