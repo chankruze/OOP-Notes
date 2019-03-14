@@ -1,30 +1,27 @@
-#
-# STRINGS
-#
+##########
+# Strings
+##########
 my_string = 'abcdefg'
 split_string = "Nishant Chutiya"
 split_string2 = "Hello World"
 
-#
 # Basics
-#
+
 'hello'
 "hello"
 "I'm a dog"
 
-#
 # Indexing
 # indexing starts from 0
-#
+
 print(my_string)
 print(my_string[0])
 print(my_string[-1])
 print(my_string[3])
 
-#
 # Slicing
 # 3 steps : beginning of the slice, end of the slice, step of the slice
-#
+
 print(my_string[2:]) # From index 2 to all the way to the end of string
 print(my_string[4:])
 
@@ -41,10 +38,9 @@ print(my_string[1:6:2]) # from index 1 to 6 with step size 2
 # strings are immutable
 # my_string[1] = 'R' << wrong
 
-#
 # Basic Methods
 # make all letter uppercase
-#
+
 x = my_string.upper()
 print(x)
 
@@ -76,9 +72,8 @@ print(split_04)
 split_04 = split_string2.split('o')
 print(split_04)
 
-#
 # Print Formatting
-#
+
 print_formatting_01 = "Insert another string here: {}".format("INSERT ME!") # Insert one string in another
 print(print_formatting_01)
 
