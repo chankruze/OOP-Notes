@@ -3,6 +3,7 @@
 ####################
 #!/usr/bin/python3
 
+import subprocess
 from random import shuffle
 
 # Two useful variables for creating Cards.
@@ -25,11 +26,11 @@ class Deck:
     deck in half and shuffling the deck. 
     """
     def __init__(self):
-        print("Creating New Ordered Deck !")
+        print("⬤ Creating New Ordered Deck !")
         self.allcards = [(s,r) for s in SUITE for r in RANKS]
 
     def shuffle(self):
-        print("Shuffling Deck")
+        print("⬤ Shuffling Deck")
         shuffle(self.allcards)
 
     def split_in_half(self):
@@ -63,8 +64,7 @@ class Player:
 
     def play_card(self):
         drawn_card = self.hand.remove_card()
-        print("{} has placed: {}".format(self.name, drawn_card))
-        print("\n")
+        print("\n{} has placed: {}".format(self.name, drawn_card))
         return drawn_card
 
     def remove_war_cards(self):
@@ -73,7 +73,7 @@ class Player:
             return self.hand.cards
         else:
             for x in range(3):
-                war_cards.append(self.hand.cards.pop(x))
+                war_cards.append(self.hand.cards.pop())
             return war_cards
 
     def still_has_cards(self):
@@ -85,7 +85,12 @@ class Player:
 ###################
 #### GAME PLAY ####
 ###################
-print("Hello Warrior, Welcome To War, Let's Fight .....")
+subprocess.call('clear')
+print("```````````````````")
+print("` Hello Warrior ! `")
+print("` Welcome To War  `")
+print("` Let's Fight     `")
+print("```````````````````")
 
 # Create new deck and split it in half:
 d = Deck()
@@ -95,7 +100,7 @@ half_1, half_2 = d.split_in_half()
 # create both players !
 cpu = Player("CPU", Hand(half_1))
 
-human = input("What is your name ?")
+human = input("\n[Q] What is your name ?\n")
 player_1 = Player(human, Hand(half_2))
 
 total_rounds = 0
@@ -103,13 +108,13 @@ war_count = 0
 
 while player_1.still_has_cards() and cpu.still_has_cards():
     total_rounds += 1
-    print("Time for a new round")
-    print("here are the current standings")
-    print(player_1.name + "has the count: " + str(len(player_1.hand.cards)))
-    print(cpu.name + "has the count: " + str(len(cpu.hand.cards)))
-    print("play a card !")
-    print("\n")
-    
+    print("\n-----------------------")
+    print("⬤ Round ",total_rounds)
+    print("- Current standings")
+    print("- " + player_1.name + " has the count : ",len(player_1.hand.cards))
+    print("- " + cpu.name + " has the count : ",len(cpu.hand.cards))
+    print("-----------------------")
+
     table_cards = []
 
     c_card = cpu.play_card()
@@ -121,7 +126,7 @@ while player_1.still_has_cards() and cpu.still_has_cards():
     if c_card[1] == p_card[1]:
         war_count += 1
 
-        print("war !")
+        print("\n⬤ War !")
 
         table_cards.extend(player_1.remove_war_cards())
         table_cards.extend(cpu.remove_war_cards())
@@ -137,7 +142,17 @@ while player_1.still_has_cards() and cpu.still_has_cards():
         else:
             cpu.hand.add_cards(table_cards)
 
-print("Game Over !\nNumber of rounds : " + str(total_rounds))
-print("A war happened " + str(war_count) + " times")
+print("\n⬤ Game Over !\n")
+print("[I] Number of rounds : " + str(total_rounds))
+print("[I] A war happened " + str(war_count) + " times !")
 
-# Use the 3 classes along with some logic to play a game of war !
+if(cpu.still_has_cards()):
+    print("\n##################")
+    print("# Computer Won ! #")
+    print("##################\n")
+else:
+    print("\n############")
+    print("# You Won ! #")
+    print("##############\n")
+
+########################## Done ##########################
