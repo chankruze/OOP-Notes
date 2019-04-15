@@ -1,0 +1,10 @@
+chankruze@geekofia:~$ python3 one.py
+Top level one.py
+one.py is being run directly
+
+chankruze@geekofia:~$ python3 two.py
+Top level one.py
+one.py has been imported
+Top level two.py
+func() in one.py
+two.py being run directly
